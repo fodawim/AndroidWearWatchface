@@ -25,12 +25,15 @@ public abstract class BaseActivity extends Activity {
 
     private void checkInsetsApplied()
     {
+        Log.d("BaseActivity", "checkInsetsApplied();");
+
         if (!(mInsetView.isReady()))
             throw new IllegalStateException("BaseActivity not ready yet.");
     }
 
     public boolean isRound()
     {
+        Log.d("BaseActivity", "isRound();");
         checkInsetsApplied();
         return this.mInsetView.isRound();
     }
@@ -39,6 +42,7 @@ public abstract class BaseActivity extends Activity {
     protected void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
         Log.d("BaseActivity", "onCreate();");
+
         ViewGroup localViewGroup = (ViewGroup)super.getWindow().getDecorView();
         this.mInsetView = new InsetView(this.mInsetView, this);
         localViewGroup.setOnApplyWindowInsetsListener(this.mInsetView);
@@ -50,6 +54,7 @@ public abstract class BaseActivity extends Activity {
 
     public void setContentView(int paramInt)
     {
+        Log.d("BaseActivity", "setContentView(int);");
         checkInsetsApplied();
         super.getLayoutInflater().inflate(getResources().getLayout(paramInt), this.mInsetView, true);
         super.setContentView(this.mInsetView);
@@ -57,6 +62,7 @@ public abstract class BaseActivity extends Activity {
 
     public void setContentView(View paramView)
     {
+        Log.d("BaseActivity", "setContentView(view);");
         checkInsetsApplied();
         this.mInsetView.addView(paramView);
         super.setContentView(this.mInsetView);
@@ -64,6 +70,7 @@ public abstract class BaseActivity extends Activity {
 
     public void setContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
     {
+        Log.d("BaseActivity", "setContentView(view, viewgroup);");
         checkInsetsApplied();
         this.mInsetView.addView(paramView, paramLayoutParams);
         super.setContentView(this.mInsetView);
@@ -81,6 +88,7 @@ public abstract class BaseActivity extends Activity {
         InsetView(View paramView, Context paramContext)
         {
             super(paramContext);
+            Log.d("BaseActivity.InsetView", "init");
         }
 
         private boolean isReady()
@@ -95,12 +103,13 @@ public abstract class BaseActivity extends Activity {
 
         public WindowInsets onApplyWindowInsets(View paramView, WindowInsets paramWindowInsets)
         {
+            Log.d("BaseActivity.InsetView", "onApplyWindowInsets();");
             if (!(this.mInsetsApplied))
             {
                 if (paramWindowInsets.isRound())
                 {
                     this.mIsRound = true;
-                    //this.mInsets = new Rect(paramView.getWindowVisibleDisplayFrame(rectangle));
+                    this.mInsets = new Rect(paramView.getLeft(), paramView.getTop(), paramView.getRight(), paramView.getBottom());
                 }
                 this.mInsetsApplied = true;
                 BaseActivity.this.onReadyForContent();

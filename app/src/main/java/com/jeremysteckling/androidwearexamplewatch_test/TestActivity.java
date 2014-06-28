@@ -24,6 +24,9 @@ public class TestActivity extends BaseActivity {
 
     private final BroadcastReceiver mActionReceiver = new BroadcastReceiver() {
         public void onReceive(Context paramContext, Intent paramIntent) {
+
+            Log.d("TestActivity", "BroadcastReceiver.onReceive();");
+
             if (paramIntent.hasExtra("card_location"))
                 TestActivity.this.onCardPeek(Rect.unflattenFromString(paramIntent.getStringExtra("card_location")));
             if (paramIntent.hasExtra("card_progress_enabled"))
@@ -36,6 +39,9 @@ public class TestActivity extends BaseActivity {
     };
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName paramComponentName, IBinder paramIBinder) {
+
+            Log.d("TestActivity", "ServiceConnection.onServiceConnected();");
+
             IHomeBackgroundService localIHomeBackgroundService = IHomeBackgroundService.Stub.asInterface(paramIBinder);
             try {
                 localIHomeBackgroundService.setStyle(TestActivity.this.buildStyle());
@@ -71,12 +77,16 @@ public class TestActivity extends BaseActivity {
     @Override
     public void onDestroy()
     {
+        Log.d("TestActivity", "onDestroy();");
         unbindService(this.mServiceConnection);
         unregisterReceiver(this.mActionReceiver);
         onDestroy();
     }
 
     protected WatchFaceStyle buildStyle() {
+
+        Log.d("TestActivity", "buildStyle();");
+
         WatchFaceStyle.Builder localBuilder = WatchFaceStyle.Builder.forActivity(this).setCardPeekMode(0).setPeekOpacityMode(1).setCardProgressMode(0).setBackgroundVisibility(0).setShowSystemUiTime(true).setViewProtection(3);
 
         if (super.isRound())
@@ -89,6 +99,7 @@ public class TestActivity extends BaseActivity {
     }
 
     protected void onAmbientModeChanged(boolean paramBoolean) {
+        Log.d("TestActivity", "onAmbientModeChanged();");
         /*
          *  Ambient Mode is when the user places their palm over the screen? (GUESS)
          */
