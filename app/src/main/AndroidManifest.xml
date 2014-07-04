@@ -4,15 +4,15 @@
     android:versionName="4.4W-1246132" >
 
     <uses-feature android:name="android.hardware.type.watch" />
-
     <uses-permission android:name="com.google.android.permission.PROVIDE_BACKGROUND" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name">
         <activity
             android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
-            android:name=".TestActivity"
+            android:name=".ExampleWatchface"
             android:label="@string/watchface_name"
             android:taskAffinity=""
             android:allowEmbedded="true" >
@@ -20,12 +20,11 @@
             <meta-data android:name="com.google.android.clockwork.home.preview" android:resource="@drawable/preview" />
             <!-- Intent filter to make the activity show up in the watchface choices -->
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="com.google.android.clockwork.home.category.HOME_BACKGROUND" />
-
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
