@@ -5,6 +5,9 @@ Custom watch-faces for Android Wear
 ===
 Notes
 ----
+
+**This project is just a very bare-bones example of a custom watchface running on Android wear.** I have not tested this on a device, only in the emulator. This should be enough to get you off the ground for now, I will be updating in the future with more examples hopefully.
+
 &bull; This is not perfect.  
 &bull; This is completely un-official.  
 &bull; I am not responsible for any damage this may cause to your device.  
