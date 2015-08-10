@@ -1,4 +1,4 @@
-__NOTE: this may or may not work on an emulator that is not HW-accelerated.__
+The official Android Wear WatchFace API docs can be found [here.](https://developer.android.com/training/wearables/watch-faces/index.html) This repository serves mostly as an archive of things from the past and should not be used as a guideline.
 ===
 
 Custom watch-faces for Android Wear
